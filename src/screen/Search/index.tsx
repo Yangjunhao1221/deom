@@ -1,7 +1,17 @@
 import React from 'react'
-
-
-export default function Search ({setParams,personList,params}) {
+export interface personList{
+  id: number,
+  name:string
+}
+interface SearchParams{
+  setParams: (params:SearchParams['params']) => void,
+  personList: personList[],
+   params: {
+    name: string,
+    personId:string
+    }
+}
+export default function Search ({setParams,personList,params}:SearchParams) {
   return (
       <div>
           <input type="text" onChange={(e) => setParams({ ...params, name: e.target.value })} />

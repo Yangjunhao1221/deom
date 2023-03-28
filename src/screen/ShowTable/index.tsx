@@ -1,6 +1,17 @@
 import React from 'react'
-
-export default function ShowTable({tableList,personList}) {
+import { personList } from 'screen/Search'
+interface tableList{
+    id: number,
+    name: string,
+    personId: number,
+    organization: string,
+    created: number
+}
+interface showTableParams{
+    tableList: tableList[],
+    personList:personList[]
+}
+export default function ShowTable({tableList,personList}:showTableParams) {
   return (
       <div>
           <table>
@@ -14,7 +25,7 @@ export default function ShowTable({tableList,personList}) {
                   {
                       tableList.map(item => <tr key={item.id}>
                           <td>{item.name}</td>
-                          <td>{personList.filter(i=>i.id===item.personId)[0]?.name }</td>
+                          <td>{personList.filter(i=>i.id===item.personId)[0]?.name||'未知' }</td>
                       </tr>)
                   }
               </tbody>
